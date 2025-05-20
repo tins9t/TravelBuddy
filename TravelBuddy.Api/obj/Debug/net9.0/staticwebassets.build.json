@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "GfG5XiCri6jsqYVUAQTV601h22gStErscEg5faQRLA0=",
+  "Source": "TravelBuddy.Api",
+  "BasePath": "_content/TravelBuddy.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
