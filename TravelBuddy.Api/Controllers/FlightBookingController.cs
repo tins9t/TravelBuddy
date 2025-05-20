@@ -23,17 +23,13 @@ public class FlightBookingController : ControllerBase
         try
         {
             await _flightBookingManager.CreateFlightBooking(booking);
-            return Ok(booking);
+            return StatusCode(201, booking);
         }
         catch (InvalidDateException ex)
         {
             return BadRequest(new { message = ex.Message });
         }
         catch (NoAvailableSeatException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (SeatAlreadyBookedException ex)
         {
             return Conflict(new { message = ex.Message });
         }

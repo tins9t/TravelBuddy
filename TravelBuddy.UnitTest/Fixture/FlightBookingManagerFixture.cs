@@ -25,8 +25,10 @@ public class FlightBookingManagerFixture : IDisposable
 
         for (int i = 1; i <= 10; i++)
         {
+            testFlight.Seats.Add(new FlightSeat { SeatNumber = i, ClassType = TravelClass.First });
+            testFlight.Seats.Add(new FlightSeat { SeatNumber = i, ClassType = TravelClass.Business });
+            testFlight.Seats.Add(new FlightSeat { SeatNumber = i, ClassType = TravelClass.Economy });
         }
-
         
         mockFlightBookingRepository
             .Setup(repo => repo.FindAvailableSeats(It.IsAny<DateTime>(), It.IsAny<int>()))
