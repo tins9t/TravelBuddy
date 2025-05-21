@@ -1,6 +1,0 @@
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\obj\Debug\net9.0\TravelBuddy.UnitTest.csproj.AssemblyReference.cache
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\obj\Debug\net9.0\TravelBuddy.UnitTest.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\obj\Debug\net9.0\TravelBuddy.UnitTest.AssemblyInfoInputs.cache
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\obj\Debug\net9.0\TravelBuddy.UnitTest.AssemblyInfo.cs
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\obj\Debug\net9.0\TravelBuddy.UnitTest.csproj.CoreCompileInputs.cache
-C:\Users\nhi_t\RiderProjects\TravelBuddy\TravelBuddy.UnitTest\bin\Debug\net9.0\CoverletSourceRootsMapping_TravelBuddy.UnitTest

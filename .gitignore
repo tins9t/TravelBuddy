@@ -1,0 +1,11 @@
+/.idea/
+/Application/bin/
+/Application/obj/
+/Infrastructure/bin/
+/Infrastructure/obj/
+/TravelBuddy.Api/bin/
+/TravelBuddy.Api/obj/
+/TravelBuddy.Core/bin/
+/TravelBuddy.Core/obj/
+/TravelBuddy.UnitTest/obj/
+/TravelBuddy.UnitTest/bin/
