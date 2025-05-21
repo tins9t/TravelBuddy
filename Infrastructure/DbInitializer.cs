@@ -73,11 +73,28 @@ public class DbInitializer
             });
         }
 
-        for (int i = 1; i <= 5; i++)
+        context.Bookings.AddRange(bookings);
+        
+        
+        var fullBookings = new List<Booking>();
+
+        for (int i = 1; i <= 10; i++)
         {
-            bookings.Add(new Booking()
+            fullBookings.Add(new Booking()
             {
-                DepartureDate = DateTime.Today.AddDays(4),
+                DepartureDate = DateTime.Today.AddDays(6),
+                CustomerId = 1,
+                FlightId = 1,
+                SeatNumber = i,
+                ClassType = TravelClass.First
+            });
+        }
+
+        for (int i = 1; i <= 10; i++)
+        {
+            fullBookings.Add(new Booking()
+            {
+                DepartureDate = DateTime.Today.AddDays(6),
                 CustomerId = 2,
                 FlightId = 1,
                 SeatNumber = i,
@@ -85,19 +102,19 @@ public class DbInitializer
             });
         }
 
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= 10; i++)
         {
-            bookings.Add(new Booking()
+            fullBookings.Add(new Booking()
             {
-                DepartureDate = DateTime.Today.AddDays(4),
+                DepartureDate = DateTime.Today.AddDays(6),
                 CustomerId = 3,
                 FlightId = 1,
                 SeatNumber = i,
                 ClassType = TravelClass.Economy
             });
         }
-
-        context.Bookings.AddRange(bookings);
+        
+        context.Bookings.AddRange(fullBookings);
         context.SaveChanges();
 
         context.SaveChanges();

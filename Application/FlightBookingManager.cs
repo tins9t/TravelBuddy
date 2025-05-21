@@ -38,7 +38,8 @@ public class FlightBookingManager : IFlightBookingManager
     {
         if(availableSeats.Count == 0) throw new NoAvailableSeatException();
         var seat = availableSeats.FirstOrDefault(s => s.ClassType == travelClass);
-        return seat?.SeatNumber ?? throw new NoAvailableSeatException();    
+        if(seat == null) throw new NoAvailableSeatInClassTypeException();
+        return seat.SeatNumber;
     }
 
     public double CalculateTotalPrice(TravelClass travelClass, Meal meal, int availableSeats)
