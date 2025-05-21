@@ -1,7 +1,10 @@
 Feature: FlightBookingManager
 
+# As a customer I want to be able to see the total price for my selected travel class and meal, 
+# so that I can make an informed decision about my booking.	
+		
 @validBookings
-Scenario: Calculate total price for valid booking
+Scenario Outline: Calculate total price for valid booking
 	Given the amount of available seats are <availableSeats>
 	And the travel class is <travelClass>
 	And the meal is <meal>
@@ -18,8 +21,11 @@ Examples:
   | 7              | 1           | 3    | 3530.50 |
   | 15             | 3           | 1    | 1575    |
 
+# As a customer I might be able to forget to choose an option for travel class or meal,
+# so the system should be able to handle this case.
+
 @invalidBookings
-Scenario: Calculate total price for invalid booking
+Scenario Outline: Calculate total price for invalid booking
 	Given the amount of available seats are <availableSeats>
 	And the travel class is <travelClass>
 	And the meal is <meal>
