@@ -28,7 +28,7 @@ public class FlightBookingManager : IFlightBookingManager
 
     booking.SeatNumber = seatNumber;
 
-    var price = Math.Round(CalculateTotalPrice(booking.ClassType, booking.Meal, availableSeats.Count()), 2);
+    var price = CalculateTotalPrice(booking.ClassType, booking.Meal, availableSeats.Count());
     booking.Price = price;
 
     await _flightBookingRepository.CreateFlightBooking(booking); 
@@ -41,11 +41,11 @@ public class FlightBookingManager : IFlightBookingManager
         return seat?.SeatNumber ?? throw new NoAvailableSeatException();    
     }
 
-    public double CalculateTotalPrice(TravelClass travelClass, Meal meal, int availableSeatsCount)
+    public double CalculateTotalPrice(TravelClass travelClass, Meal meal, int availableSeats)
     {
         int basePrice = 1000;
         int totalSeats = 30;
-        int bookedSeats = totalSeats - availableSeatsCount;
+        int bookedSeats = totalSeats - availableSeats;
         double occupancyRate = (double)bookedSeats / totalSeats;
         
         double loadMultiplier = 1.0;
@@ -74,6 +74,8 @@ public class FlightBookingManager : IFlightBookingManager
         
         int total = basePrice + classPrice + mealPrice;
 
-        return total * loadMultiplier;
+        double price = total * loadMultiplier;
+
+        return Math.Round(price, 2);
     }
 }

@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "ba9ebae7-b086-484a-807f-7eeeed00e9e0",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43559072"
+	},
+	"item": [
+		{
+			"name": "Create Flight Booking (First valid date)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setDate(today.getDate() + 1);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (One day after valid date)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setDate(today.getDate() + 2);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Maximum valid date - 1))",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setMonth(today.getMonth() + 6);\r",
+							"departureDate.setDate(departureDate.getDate() - 1);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Maximum valid date)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setMonth(today.getMonth() + 6);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", depatureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Today)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"The provided date is invalid.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Maximum date + 1)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setMonth(today.getMonth() + 6);\r",
+							"departureDate.setDate(departureDate.getDate() + 1);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 400 Bad Request\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"The provided date is invalid.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Maximum date + 6 months)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setMonth(today.getMonth() + 12);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 400 Bad Request\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"The provided date is invalid\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (Occupied flight seat)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setDate(today.getDate() + 4);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 409 Conflict\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"No available seat found.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
