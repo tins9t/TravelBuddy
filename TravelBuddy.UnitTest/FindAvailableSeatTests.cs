@@ -22,8 +22,8 @@ public class FindAvailableSeatTests
         var flightBookingManager = _fixture.FlightBookingManager;
         var seats = new List<FlightSeat>()
         {
-            new FlightSeat { SeatNumber = 4, ClassType = TravelClass.First },
-            new FlightSeat { SeatNumber = 5, ClassType = TravelClass.First }
+            new() { SeatNumber = 4, ClassType = TravelClass.First },
+            new() { SeatNumber = 5, ClassType = TravelClass.First }
         };
         
         // Act
@@ -54,8 +54,8 @@ public class FindAvailableSeatTests
         var flightBookingManager = _fixture.FlightBookingManager;
         var emptySeats = new List<FlightSeat>
         {
-            new FlightSeat { SeatNumber = 4, ClassType = TravelClass.Business },
-            new FlightSeat { SeatNumber = 5, ClassType = TravelClass.Economy }
+            new() { SeatNumber = 4, ClassType = TravelClass.Business },
+            new() { SeatNumber = 5, ClassType = TravelClass.Economy }
         };
         
         // Act & Assert
