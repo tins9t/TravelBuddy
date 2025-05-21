@@ -207,7 +207,7 @@
 							"\r",
 							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
 							"\r",
-							"pm.variables.set(\"departureDate\", depatureFormatted);\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
 							""
 						],
 						"type": "text/javascript",
