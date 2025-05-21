@@ -450,7 +450,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Flight Booking (Occupied flight seat)",
+			"name": "Create Flight Booking (Occupied flight class type seat)",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -460,6 +460,71 @@
 							"\r",
 							"const departureDate = new Date(today);\r",
 							"departureDate.setDate(today.getDate() + 4);\r",
+							"\r",
+							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
+							"\r",
+							"pm.variables.set(\"departureDate\", departureFormatted);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status is 409 Conflict\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"No available seat in specified travel class found.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"flightId\": 1,\r\n  \"departureDate\": \"{{departureDate}}\",\r\n  \"customerId\": 1,\r\n  \"classType\": 1,\r\n  \"seatNumber\": 0,\r\n  \"meal\": 1,\r\n  \"price\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5051/api/flightbooking/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5051",
+					"path": [
+						"api",
+						"flightbooking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flight Booking (No available seats)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const today = new Date();\r",
+							"\r",
+							"const departureDate = new Date(today);\r",
+							"departureDate.setDate(today.getDate() + 6);\r",
 							"\r",
 							"const departureFormatted = departureDate.toISOString().split('T')[0]; \r",
 							"\r",

@@ -2,7 +2,6 @@
 using TravelBuddy.Core.Enums;
 using TravelBuddy.Core.Exceptions;
 using TravelBuddy.UnitTest.Fixture;
-using TravelBuddy.UnitTest.TestData;
 
 namespace TravelBuddy.UnitTest;
 
@@ -16,30 +15,53 @@ public class FindAvailableSeatTests
         _fixture = fixture;
     }
 
-    [Theory]
-    [MemberData(nameof(FindAvailabeSeatTestData.AvailableSeats), MemberType = typeof(FindAvailabeSeatTestData))]    
-    public void FindAvailableSeat_ShouldReturnSeatNumber_WhenSeatAvailableForClass(TravelClass travelClass, List<FlightSeat> seats, int expectedNumber)
+    [Fact]
+    public void FindAvailableSeat_ShouldReturnSeatNumber_WhenSeatAvailableForClass()
     {
         // Arrange
         var flightBookingManager = _fixture.FlightBookingManager;
-
+        var seats = new List<FlightSeat>()
+        {
+            new FlightSeat { SeatNumber = 4, ClassType = TravelClass.First },
+            new FlightSeat { SeatNumber = 5, ClassType = TravelClass.First }
+        };
+        
         // Act
-        var seatNumber = flightBookingManager.FindAvailableSeat(travelClass, seats);
+        var seatNumber = flightBookingManager.FindAvailableSeat(TravelClass.First, seats);
 
         // Assert
-        Assert.Equal(expectedNumber, seatNumber);
+        Assert.Equal(4, seatNumber);
     }
     
-    [Theory]
-    [MemberData(nameof(FindAvailabeSeatTestData.NoAvailableSeatData), MemberType = typeof(FindAvailabeSeatTestData))] 
-    public void FindAvailableSeat_ShouldThrowException_WhenNoSeatsAvailable(TravelClass travelClass, List<FlightSeat> seats)
+    [Fact]
+    public void FindAvailableSeat_ShouldThrowException_WhenNoSeatsAvailable()
     {
         // Arrange
         var flightBookingManager = _fixture.FlightBookingManager;
+        var emptySeats = new List<FlightSeat> { };
+        
         // Act & Assert
         var ex = Assert.Throws<NoAvailableSeatException>(() =>
-            flightBookingManager.FindAvailableSeat(travelClass, seats));
+            flightBookingManager.FindAvailableSeat(TravelClass.First, emptySeats));
         
         Assert.Contains("No available seat found.", ex.Message);
+    }
+    
+    [Fact]
+    public void FindAvailableSeat_ShouldThrowException_WhenNoSeatForClassTypeAvailable()
+    {
+        // Arrange
+        var flightBookingManager = _fixture.FlightBookingManager;
+        var emptySeats = new List<FlightSeat>
+        {
+            new FlightSeat { SeatNumber = 4, ClassType = TravelClass.Business },
+            new FlightSeat { SeatNumber = 5, ClassType = TravelClass.Economy }
+        };
+        
+        // Act & Assert
+        var ex = Assert.Throws<NoAvailableSeatInClassTypeException>(() =>
+            flightBookingManager.FindAvailableSeat(TravelClass.First, emptySeats));
+        
+        Assert.Contains("No available seat in specified travel class found.", ex.Message);
     }
 }

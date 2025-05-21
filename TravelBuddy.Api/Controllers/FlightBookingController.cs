@@ -33,6 +33,10 @@ public class FlightBookingController : ControllerBase
         {
             return Conflict(new { message = ex.Message });
         }
+        catch (NoAvailableSeatInClassTypeException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
         catch (Exception)
         {
             return StatusCode(500, new { message = "An unexpected error occurred." });
