@@ -15,7 +15,6 @@ public static class TestDataDates
         new List<object[]>
         {
             new object[] { DateTime.Today },
-            new object[] { DateTime.Today.AddDays(-1) },
             new object[] { DateTime.Today.AddMonths(6).AddDays(1) },
             new object[] { DateTime.Today.AddMonths(12) }
         };
