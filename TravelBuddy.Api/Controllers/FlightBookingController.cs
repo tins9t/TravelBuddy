@@ -1,7 +1,7 @@
-﻿using Application.Interface;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TravelBuddy.Core.Entities;
 using TravelBuddy.Core.Exceptions;
+using TravelBuddy.Core.Interfaces;
 
 namespace TravelBuddy.Controllers;
 

@@ -1,6 +1,6 @@
-﻿using Infrastructure.Interface;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TravelBuddy.Core.Entities;
+using TravelBuddy.Core.Interfaces;
 
 namespace Infrastructure.Repositories;
 
@@ -12,7 +12,7 @@ public class FlightBookingRepository : IFlightBookingRepository
     {
         _context = context;
     }
-
+    
     public async Task<List<FlightSeat>> FindAvailableSeats(DateTime departureDate, int flightId)
     {
         var bookedSeats = await _context.Bookings
@@ -26,9 +26,10 @@ public class FlightBookingRepository : IFlightBookingRepository
             .Where(fs => !bookedSeats.Any(b => b.SeatNumber == fs.SeatNumber && b.ClassType == fs.ClassType)).ToList();
     }
 
-    public async Task CreateFlightBooking(Booking booking)
+    public async Task<Booking> CreateFlightBooking(Booking booking)
     {
-       _context.Bookings.Add(booking);
+       var createdBooking = _context.Bookings.Add(booking);
        await _context.SaveChangesAsync();
+       return createdBooking.Entity;
     }
 }
