@@ -1,8 +1,7 @@
-﻿using Application.Interface;
-using Infrastructure.Interface;
-using TravelBuddy.Core.Entities;
+﻿using TravelBuddy.Core.Entities;
 using TravelBuddy.Core.Enums;
 using TravelBuddy.Core.Exceptions;
+using TravelBuddy.Core.Interfaces;
 
 namespace Application;
 
@@ -15,7 +14,7 @@ public class FlightBookingManager : IFlightBookingManager
         _flightBookingRepository = flightBookingRepository;
     }
     
-    public async Task CreateFlightBooking(Booking booking)
+    public async Task<Booking> CreateFlightBooking(Booking booking)
     {
     if (booking.DepartureDate <= DateTime.Today || booking.DepartureDate > DateTime.Today.AddMonths(6))
     {
@@ -31,7 +30,7 @@ public class FlightBookingManager : IFlightBookingManager
     var price = CalculateTotalPrice(booking.ClassType, booking.Meal, availableSeats.Count());
     booking.Price = price;
 
-    await _flightBookingRepository.CreateFlightBooking(booking); 
+    return await _flightBookingRepository.CreateFlightBooking(booking);
     }
 
     public int FindAvailableSeat(TravelClass travelClass, List<FlightSeat> availableSeats)

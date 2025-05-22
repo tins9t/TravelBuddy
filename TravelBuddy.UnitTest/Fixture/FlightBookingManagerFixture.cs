@@ -1,8 +1,8 @@
 ﻿using Application;
-using Infrastructure.Interface;
 using Moq;
 using TravelBuddy.Core.Entities;
 using TravelBuddy.Core.Enums;
+using TravelBuddy.Core.Interfaces;
 
 namespace TravelBuddy.UnitTest.Fixture;
 
@@ -33,6 +33,10 @@ public class FlightBookingManagerFixture : IDisposable
         mockFlightBookingRepository
             .Setup(repo => repo.FindAvailableSeats(It.IsAny<DateTime>(), It.IsAny<int>()))
             .ReturnsAsync(testFlight.Seats);
+        
+        mockFlightBookingRepository
+            .Setup(repo => repo.CreateFlightBooking(It.IsAny<Booking>()))
+            .ReturnsAsync((Booking b) => b);
 
         FlightBookingManager = new FlightBookingManager(mockFlightBookingRepository.Object);
     }

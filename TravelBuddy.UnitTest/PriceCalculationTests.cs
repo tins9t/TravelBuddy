@@ -16,7 +16,7 @@ public class PriceCalculationTests
     
     [Theory]
     [MemberData(nameof(PriceCalculationTestData.PriceCalculationData),  MemberType= typeof(PriceCalculationTestData))]
-    public async Task CalculateTotalPrice_ShouldReturnCorrectPrice(TravelClass travelClass, Meal meal, int availableSeats, double expectedPrice)
+    public void CalculateTotalPrice_ShouldReturnCorrectPrice(TravelClass travelClass, Meal meal, int availableSeats, double expectedPrice)
     {
         // Arrange
         var flightBookingManager = _fixture.FlightBookingManager;

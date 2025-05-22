@@ -1,10 +1,9 @@
 ﻿using TravelBuddy.Core.Entities;
-using TravelBuddy.Core.Enums;
 
-namespace Infrastructure.Interface;
+namespace TravelBuddy.Core.Interfaces;
 
 public interface IFlightBookingRepository
 {
     public Task<List<FlightSeat>> FindAvailableSeats(DateTime departureDate, int flightId);
-    public Task CreateFlightBooking(Booking booking);
+    public Task<Booking> CreateFlightBooking(Booking booking);
 }

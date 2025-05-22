@@ -20,8 +20,10 @@ public class CreateFlightBookingTests
     [MemberData(nameof(TestDataDates.ValidDates), MemberType = typeof(TestDataDates))]
     public async Task CreateFlightBooking_ShouldCreateBooking_ForValidDepartureDates(DateTime departureDate)
     {
+        // Arrange
         var booking = new Booking
         {
+            Id = 1,
             DepartureDate = departureDate,
             FlightId = 1,
             ClassType = TravelClass.Economy,
@@ -30,14 +32,18 @@ public class CreateFlightBookingTests
 
         var flightBookingManager = _fixture.FlightBookingManager;
 
-        var exception = await Record.ExceptionAsync(() => flightBookingManager.CreateFlightBooking(booking));
-        Assert.Null(exception);
+        // Act
+        var createdBooking = await flightBookingManager.CreateFlightBooking(booking);
+        
+        // Assert
+        Assert.Equal(booking.Id, createdBooking.Id);
     }
     
     [Theory]
     [MemberData(nameof(TestDataDates.InvalidDates), MemberType = typeof(TestDataDates))]
     public async Task CreateFlightBooking_ShouldThrowInvalidDateException_ForInvalidDepartureDates(DateTime departureDate)
     {
+        // Arrange
         var booking = new Booking
         {
             DepartureDate = departureDate,
@@ -48,6 +54,7 @@ public class CreateFlightBookingTests
 
         var flightBookingManager = _fixture.FlightBookingManager;
 
+        // Act & Assert
         var exception = await Assert.ThrowsAsync<InvalidDateException>(() => flightBookingManager.CreateFlightBooking(booking));
         Assert.Equal("The provided date is invalid.", exception.Message); 
     }

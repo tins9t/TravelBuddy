@@ -1,9 +1,8 @@
 using Application;
-using Application.Interface;
 using Infrastructure;
-using Infrastructure.Interface;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using TravelBuddy.Core.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

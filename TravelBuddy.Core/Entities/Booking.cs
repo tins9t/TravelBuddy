@@ -1,8 +1,10 @@
-﻿using TravelBuddy.Core.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using TravelBuddy.Core.Enums;
 namespace TravelBuddy.Core.Entities;
 
 public class Booking
 {
+    [Key]
     public int Id { get; set; }
     public int FlightId { get; set; }
     public DateTime DepartureDate { get; set; }
